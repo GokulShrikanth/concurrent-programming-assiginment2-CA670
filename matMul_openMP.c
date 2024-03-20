@@ -1,4 +1,4 @@
-#include <omp.h>
+#include "/opt/homebrew/Cellar/libomp/18.1.2/include/omp.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
@@ -51,7 +51,7 @@ int main() {
     }
 
     gettimeofday(&end , NULL);
-    printf("sum reduction - %lu seconds and %lu microseconds \n",(end.tv_sec - start.tv_sec),(end.tv_usec - start.tv_usec));
+    //printf("sum reduction - %lu seconds and %lu microseconds \n",(end.tv_sec - start.tv_sec),(end.tv_usec - start.tv_usec));
 
     printf("sum = %d\n", sum);
 }
