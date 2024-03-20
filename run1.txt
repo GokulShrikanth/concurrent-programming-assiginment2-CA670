@@ -1,0 +1,6 @@
+gk_shri@Gokuls-MacBook-Pro concurrent % java -jar target/concurrent-1.0-SNAPSHOT.jar
+Number of threads: 8
+Chunk size: 1250
+Start time: 14:29:07
+End time: 14:44:26
+Time taken: 918394
