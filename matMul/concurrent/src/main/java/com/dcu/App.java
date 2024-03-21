@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 public class App {
     public static void main(String[] args) {
         // Define the size of the matrices
-        int size = 10000;
+        int size = 5000;
 
         // Create the matrices
         int[][] matrixA = new int[size][size];
