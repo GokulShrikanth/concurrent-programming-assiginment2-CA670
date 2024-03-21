@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 public class App {
     public static void main(String[] args) {
         // Define the size of the matrices
-        int size = 5000;
+        int size = 4000;
 
         // Create the matrices
         int[][] matrixA = new int[size][size];
@@ -30,6 +30,8 @@ public class App {
             futures[i] = CompletableFuture.runAsync(
                     new StrassenMultiplicationTask(matrixA, matrixB, resultMatrix, size, 0, 0, 0, 0, 0));
         }
+
+        //coppersmithWinograd.multiply(matrixA, matrixB);
 
         // Wait for all tasks to complete
         CompletableFuture.allOf(futures).join();
