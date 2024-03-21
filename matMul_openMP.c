@@ -1,4 +1,4 @@
-#include "/opt/homebrew/Cellar/libomp/18.1.2/include/omp.h"
+#include "omp.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
