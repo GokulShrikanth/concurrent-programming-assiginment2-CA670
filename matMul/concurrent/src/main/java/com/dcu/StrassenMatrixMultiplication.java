@@ -76,10 +76,10 @@ public class StrassenMatrixMultiplication {
         }
     }
     //Print the matrix
-    private static void printMatrix(int[][] matrix) {
+    public static void printMatrix(int[][] matrix) {
         for (int[] row : matrix) {
             for (int i : row) {
-                System.out.print(i + " ");
+                System.out.printf("%5d ", i); // Adjust the width as needed
             }
             System.out.println();
         }
@@ -112,16 +112,14 @@ public class StrassenMatrixMultiplication {
         System.out.println("Start Time: " + startTime);
         System.out.println("End Time: " + endTime);
         System.out.println("Total Time: " + totalTime + " milliseconds"); // Print the result
+        System.out.println("Strassen Multiplication");
         printMatrix(result);
+        System.out.println("Naive Multiplication");
         printMatrix(result1);
 
-        int [][] A1 ={ {1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16} };
-        int [][] B1 ={ {1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16} };
-        printMatrix(A1);
-        printMatrix(B1);
         long startTime1 = System.currentTimeMillis();
 
-        int[][] result2 = coppersmithWinograd.multiply(A1, B1);
+        int[][] result2 = coppersmithWinograd.multiply(A, B);
         if(result == result1)
             System.out.println("Both results are same");
         else
@@ -133,8 +131,10 @@ public class StrassenMatrixMultiplication {
         System.out.println("Start Time: " + startTime1);
         System.out.println("End Time: " + endTime1);
         System.out.println("Total Time: " + totalTime1 + " milliseconds"); // Print the result
-        printMatrix(result);
+        System.out.println("Coppersmith Winograd Multiplication");
         printMatrix(result2);
+        System.out.println("Naive Multiplication");
+        printMatrix(result1);
 
     }
 
@@ -151,5 +151,22 @@ public class StrassenMatrixMultiplication {
         }
 
         return result;
+    }
+
+    //check if the matrices are equal
+    public static boolean equals(int[][] A, int[][] B) {
+        if (A.length != B.length || A[0].length != B[0].length) {
+            return false;
+        }
+
+        for (int i = 0; i < A.length; i++) {
+            for (int j = 0; j < A[0].length; j++) {
+                if (A[i][j] != B[i][j]) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 }

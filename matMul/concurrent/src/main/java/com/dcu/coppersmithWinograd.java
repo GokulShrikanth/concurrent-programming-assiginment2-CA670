@@ -46,10 +46,13 @@ public class coppersmithWinograd {
             for (int j = 0; j < colsB; j++) {
                 final int row = i;
                 final int col = j;
-                executor.submit(() -> {
-                    for (int k = 0; k < colsA / 2; k++) {
-                        intermediate[row][col] += (rowFactor[row][2 * k] * colFactor[2 * k + 1][col])
-                                + (rowFactor[row][2 * k + 1] * colFactor[2 * k][col]);
+                executor.submit(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (int k = 0; k < colsA / 2; k++) {
+                            intermediate[row][col] += (rowFactor[row][2 * k] + colFactor[2 * k + 1][col])
+                                    * (rowFactor[row][2 * k + 1] + colFactor[2 * k][col]);
+                        }
                     }
                 });
             }
@@ -68,27 +71,12 @@ public class coppersmithWinograd {
             for (int j = 0; j < colsB; j++) {
                 result[i][j] = intermediate[i][j];
                 for (int k = 0; k < colsA / 2; k++) {
-                    result[i][j] += (rowFactor[i][2 * k] * colFactor[2 * k + 1][j])
-                            + (rowFactor[i][2 * k + 1] * colFactor[2 * k][j]);
+                    result[i][j] += (rowFactor[i][2 * k] + colFactor[2 * k + 1][j])
+                            * (rowFactor[i][2 * k + 1] + colFactor[2 * k][j]);
                 }
             }
         }
 
         return result;
-    }
-
-    public static void main(String[] args) {
-        int[][] matrixA = {{1, 2}, {3, 4}};
-        int[][] matrixB = {{5, 6}, {7, 8}};
-
-        int[][] result = multiply(matrixA, matrixB);
-
-        // Print the result
-        for (int[] row : result) {
-            for (int num : row) {
-                System.out.print(num + " ");
-            }
-            System.out.println();
-        }
     }
 }
