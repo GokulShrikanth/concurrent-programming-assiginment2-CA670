@@ -87,19 +87,24 @@ public class StrassenMatrixMultiplication {
 
     public static void main(String[] args) {
 
-        int size = 4096; // Change the size of the matrices here
-        int[][] A = new int[size][size];
-        int[][] B = new int[size][size];
-        //Initialize the matrices
-        initializeMatrix(A);
-        initializeMatrix(B);
-        // int [][] A ={ {1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16} };
-        // int [][] B ={ {1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16} };
-        // printMatrix(A);
-        // printMatrix(B);
+        // int size = 1024; // Change the size of the matrices here
+        // int[][] A = new int[size][size];
+        // int[][] B = new int[size][size];
+        // //Initialize the matrices
+        // initializeMatrix(A);
+        // initializeMatrix(B);
+        int [][] A ={ {1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16} };
+        int [][] B ={ {1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16} };
+        printMatrix(A);
+        printMatrix(B);
         long startTime = System.currentTimeMillis();
 
         int[][] result = multiply(A, B);
+        int[][] result1 = multiplyNaive(A, B);
+        if(result == result1)
+            System.out.println("Both results are same");
+        else
+            System.out.println("Both results are different");
 
         long endTime = System.currentTimeMillis();
 
@@ -107,7 +112,44 @@ public class StrassenMatrixMultiplication {
         System.out.println("Start Time: " + startTime);
         System.out.println("End Time: " + endTime);
         System.out.println("Total Time: " + totalTime + " milliseconds"); // Print the result
-        //printMatrix(result);
+        printMatrix(result);
+        printMatrix(result1);
 
+        int [][] A1 ={ {1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16} };
+        int [][] B1 ={ {1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16} };
+        printMatrix(A1);
+        printMatrix(B1);
+        long startTime1 = System.currentTimeMillis();
+
+        int[][] result2 = coppersmithWinograd.multiply(A1, B1);
+        if(result == result1)
+            System.out.println("Both results are same");
+        else
+            System.out.println("Both results are different");
+
+        long endTime1 = System.currentTimeMillis();
+
+        long totalTime1 = endTime - startTime;
+        System.out.println("Start Time: " + startTime1);
+        System.out.println("End Time: " + endTime1);
+        System.out.println("Total Time: " + totalTime1 + " milliseconds"); // Print the result
+        printMatrix(result);
+        printMatrix(result2);
+
+    }
+
+    public static int[][] multiplyNaive(int[][] A, int[][] B) {
+        int n = A.length;
+        int[][] result = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                for (int k = 0; k < n; k++) {
+                    result[i][j] += A[i][k] * B[k][j];
+                }
+            }
+        }
+
+        return result;
     }
 }
