@@ -1,2 +1,4 @@
-com/dcu/App.class
-com/dcu/StrassenMultiplicationTask.class
+com/dcu/StrassenMatrixMultiplication.class
+com/dcu/coppersmithWinograd.class
+com/dcu/coppersmithWinograd$1.class
+com/dcu/StrassenMatrixMultiplication$StrassenTask.class

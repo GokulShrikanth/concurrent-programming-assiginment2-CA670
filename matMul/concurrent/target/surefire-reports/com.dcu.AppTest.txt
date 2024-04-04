@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.dcu.AppTest
 -------------------------------------------------------------------------------
+<<<<<<< HEAD
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.029 s - in com.dcu.AppTest
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 s - in com.dcu.AppTest
+>>>>>>> 46fc206d32453959f50f6cc7f9e7a31aa051db0f
